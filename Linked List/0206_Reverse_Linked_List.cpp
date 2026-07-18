@@ -9,9 +9,24 @@
  * };
  */
 
-class Solution {
+/*
+=========================================================
+Problem: 206. Reverse Linked List
+
+Approach 1: Iterative
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Approach 2: Recursive
+Time Complexity: O(n)
+Space Complexity: O(n)   // recursion stack
+=========================================================
+*/
+
+class IterativeSolution {
 public:
     ListNode* reverseList(ListNode* head) {
+
         ListNode* curr = head;
         ListNode* prev = NULL;
 
@@ -22,5 +37,22 @@ public:
             curr = nextNode;
         }   
         return prev;
+    }
+};
+
+
+//Solution 2 -- Recurrsive Approach
+
+class RecursiveSolution{
+public:
+    ListNode* reverseList(ListNode* head){
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+        ListNode* newhead = reverseList(head->next);
+
+        head->next->next = head;
+        head->next = NULL;
+        return newhead;
     }
 };
